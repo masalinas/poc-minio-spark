@@ -89,9 +89,9 @@ annotation_df = df.select(column(df.columns[0]).alias("sample_id"), column("HIF3
 annotation_df.show()
 ```
 
-**STEP06**: create the driver docker image from our spark application to be used by the spark operator
+**STEP06**: create the spark application driver docker image to be used by the spark operator
 
-Create file Dockerfile includinf the certificate inside keystore
+Create file **Dockerfile** including the certificate inside keystore because the connection to minio is over SSL
 
 ```shell
 FROM openlake/spark-py:3.3.1
