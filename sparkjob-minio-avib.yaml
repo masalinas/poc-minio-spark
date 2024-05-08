@@ -1,0 +1,65 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+    name: spark-job-minio-avib
+    namespace: spark-operator
+spec:
+    type: Python
+    pythonVersion: "3"
+    mode: cluster
+    imagePullSecrets:
+      - acr-avib-secret
+    image: avibdocker.azurecr.io/sparkjob-avib:1.14.0
+    imagePullPolicy: Always
+    mainApplicationFile: local:///app/main.py
+    sparkVersion: "3.3.1"
+    restartPolicy:
+        type: OnFailure
+        onFailureRetries: 3
+        onFailureRetryInterval: 10
+        onSubmissionFailureRetries: 5
+        onSubmissionFailureRetryInterval: 20
+    driver:
+        cores: 1
+        memory: "1024m"
+        labels:
+            version: 3.3.1
+        serviceAccount: avib-spark-operator
+        #javaOptions: "-Dcom.amazonaws.sdk.disableCertChecking=true"
+        env:
+            -   name: AWS_REGION
+                value: us-east-1
+            -   name: AWS_ACCESS_KEY_ID
+                value: gl8rbGORHSpxmg1V
+            -   name: AWS_SECRET_ACCESS_KEY
+                value: 8WphDMckYqRb29s43SzA4trsV2GgaQRc
+    executor:
+        cores: 1
+        instances: 3
+        memory: "1024m"
+        labels:
+            version: 3.3.1
+        #javaOptions: "-Dcom.amazonaws.sdk.disableCertChecking=true"
+        env:
+            -   name: INPUT_PATH
+                value: "s3a://65cd021098d02623c46da92d/65cd02d9e6ba3947be825ac8/66085488056b08fae55840e5/gen_datamatrix.csv"
+            -   name: AWS_REGION
+                valueFrom:
+                    secretKeyRef:
+                        name: minio-secret
+                        key: AWS_REGION
+            -   name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                    secretKeyRef:
+                        name: minio-secret
+                        key: AWS_ACCESS_KEY_ID
+            -   name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                    secretKeyRef:
+                        name: minio-secret
+                        key: AWS_SECRET_ACCESS_KEY
+            -   name: ENDPOINT
+                valueFrom:
+                    secretKeyRef:
+                        name: minio-secret
+                        key: ENDPOINT
