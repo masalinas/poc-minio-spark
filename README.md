@@ -58,7 +58,6 @@ import os
 import logging
 
 from pyspark import SparkContext
-#from pyspark.conf import SparkConf
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, FloatType, StringType
 from pyspark.sql.functions import expr, column
