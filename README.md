@@ -38,7 +38,7 @@ deploy this resource
 kubectl apply -f azure-cr-credentials.yaml
 ```
 
-**STEP04**: create a secret for minio credentials to be used by spark executers when start execute our sample
+**STEP04**: create a secret for minio credentials to be used by our poc spark application to connect to minio and recover resources
 
 ```shell
 kubectl create secret generic minio-secret \
@@ -49,9 +49,9 @@ kubectl create secret generic minio-secret \
 --namespace spark-operator
 ```
 
-**STEP05**: create our spark application like this:
+**STEP05**: create our spark application implemented in python like this:
 
-Create file src/main.py
+Create file **src/main.py**
 
 ```shell
 import os
