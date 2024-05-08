@@ -33,7 +33,10 @@ def load_config(spark_context: SparkContext):
 load_config(spark.sparkContext)
 
 # Read CSV file from Minio
-df = spark.read.option("header", "true").option("inferSchema", "true").csv("s3a://65cd021098d02623c46da92d/65cd02d9e6ba3947be825ac8/66085488056b08fae55840e5/gen_datamatrix.csv")
+df = spark.read \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .csv("s3a://65cd021098d02623c46da92d/65cd02d9e6ba3947be825ac8/66085488056b08fae55840e5/gen_datamatrix.csv")
 
 # Filter dataframe by annotation column name
 annotation_df = df.select(column(df.columns[0]).alias("sample_id"), column("HIF3A").alias("expression"))

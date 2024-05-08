@@ -9,7 +9,7 @@ spec:
     mode: cluster
     imagePullSecrets:
       - acr-avib-secret
-    image: avibdocker.azurecr.io/sparkjob-avib:1.14.0
+    image: avibdocker.azurecr.io/sparkjob-avib:1.18.0
     imagePullPolicy: Always
     mainApplicationFile: local:///app/main.py
     sparkVersion: "3.3.1"
