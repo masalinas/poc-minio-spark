@@ -3,7 +3,7 @@ Spark permit develop analysis in a distributed way in our case SQL requests agai
 
 
 ## Steps to install
-**STEP01**: Install helm official repository for spart opperator to access manage spark applications
+**STEP01**: Install helm official repository for spark opperator to access manage spark applications
 
 ```shell
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
