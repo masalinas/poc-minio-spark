@@ -27,7 +27,7 @@ create file azure-cr-credentials.yaml
 ```shell
 apiVersion: v1
 data:
-  .dockerconfigjson: eyJhdXRocyI6eyJhdmliZG9ja2VyLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiJhdmliZG9ja2VyIiwicGFzc3dvcmQiOiJCQXFCZEhWYnJTbVBPeEg5NmxHSGxjemU3Z3g4bGNJc1dKTnhVRnl4L2MrQUNSQjErTDVNIiwiYXV0aCI6IllYWnBZbVJ2WTJ0bGNqcENRWEZDWkVoV1luSlRiVkJQZUVnNU5teEhTR3hqZW1VM1ozZzRiR05KYzFkS1RuaFZSbmw0TDJNclFVTlNRakVyVERWTiJ9fX0=
+  .dockerconfigjson: <SECRET_CR>
 kind: Secret
 metadata:
   name: acr-avib-secret
