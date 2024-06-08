@@ -20,14 +20,14 @@ helm install avib-spark-operator spark-operator/spark-operator \
 --create-namespace
 ```
 
-**STEP03**: add secret credentials to access azure container registry from operator installed in spark-operator namespace
+**STEP03**: add secret credentials to access azure container registry from operator installed in spark-operator namespace. Set the Azure Container Registry credentials to access to your CR from kubernetes
 
 create file azure-cr-credentials.yaml
 
 ```shell
 apiVersion: v1
 data:
-  .dockerconfigjson: <SECRET_CR>
+  .dockerconfigjson: <AZURE_CR_CREDENTIALS>
 kind: Secret
 metadata:
   name: acr-avib-secret
